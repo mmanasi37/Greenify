@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="transport_mediums">
+        <item>Car</item>
+        <item>Bus</item>
+        <item>Train</item>
+        <item>Bicycle</item>
+        <item>Walking</item>
+        <item>Airplane</item>
+    </string-array>
+</resources>
