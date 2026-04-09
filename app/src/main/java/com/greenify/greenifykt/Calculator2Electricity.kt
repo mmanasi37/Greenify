@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import java.util.HashMap
 
 class Calculator2Electricity : AppCompatActivity() {
@@ -37,8 +38,7 @@ class Calculator2Electricity : AppCompatActivity() {
         btnGenerateTips?.setOnClickListener {
             try {
                 // Generate and display an eco-friendly tip
-                val ecoFriendlyTip = generateEcoFriendlyTip()
-                txtCarbonFootprint?.text = ecoFriendlyTip
+                generateEcoFriendlyTip()
             } catch (e: Exception) {
                 // Handle exceptions here, e.g., if tip generation fails
                 txtCarbonFootprint?.text = "Error generating eco-friendly tip."
@@ -82,7 +82,8 @@ class Calculator2Electricity : AppCompatActivity() {
         query.get().addOnCompleteListener(OnCompleteListener { task: Task<*> ->
             if (task.isSuccessful) {
                 // Query was successful, get the documents
-                val documents = task.result?.documents
+                val querySnapshot = task.result as? QuerySnapshot
+                val documents = querySnapshot?.documents
 
                 if (documents != null && documents.isNotEmpty()) {
                     // Retrieve the carbon footprint value from the Firestore document
@@ -114,7 +115,8 @@ class Calculator2Electricity : AppCompatActivity() {
         tipsCollection.get().addOnCompleteListener(OnCompleteListener { task: Task<*> ->
             if (task.isSuccessful) {
                 // Query was successful, get the documents
-                val documents = task.result?.documents
+                val querySnapshot = task.result as? QuerySnapshot
+                val documents = querySnapshot?.documents
 
                 if (documents != null && documents.isNotEmpty()) {
                     // Retrieve a random eco-friendly tip

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import java.util.Locale
 
 class Calculator1 : AppCompatActivity() {
@@ -30,7 +31,7 @@ class Calculator1 : AppCompatActivity() {
         setContentView(R.layout.activity_calculator1)
 
         // Initialize your UI elements
-        edtTypeOfMeat = findViewById(R.id.meatconsumed)
+        edtTypeOfMeat = findViewById(R.id.spinnerMeatType)
         edtAmountConsumed = findViewById(R.id.weightofmeat)
         txtCarbonFootprint = findViewById(R.id.carbondisplay)
         ElectricityCalculator = findViewById(R.id.btngotoElectricity)
@@ -63,9 +64,8 @@ class Calculator1 : AppCompatActivity() {
 
         //Go to Transport Calculator
         TransportCalculator?.setOnClickListener {
-            val intent = Intent(applicationContext, Calculator4Transport::class.java)
-            startActivity(intent)
-            finish()
+            // Transport calculator temporarily disabled
+            txtCarbonFootprint?.text = "Transport calculator feature coming soon!"
         }
 
         btnMeatcalculation.setOnClickListener {
@@ -101,7 +101,8 @@ class Calculator1 : AppCompatActivity() {
         tipsCollection.get().addOnCompleteListener(OnCompleteListener { task: Task<*> ->
             if (task.isSuccessful) {
                 // Query was successful, get the documents
-                val documents = task.result?.documents
+                val querySnapshot = task.result as? QuerySnapshot
+                val documents = querySnapshot?.documents
 
                 if (documents != null && documents.isNotEmpty()) {
                     // Retrieve a random eco-friendly tip
@@ -136,7 +137,8 @@ class Calculator1 : AppCompatActivity() {
         query.get().addOnCompleteListener(OnCompleteListener { task: Task<*> ->
             if (task.isSuccessful) {
                 // Query was successful, get the documents
-                val documents = task.result?.documents
+                val querySnapshot = task.result as? QuerySnapshot
+                val documents = querySnapshot?.documents
 
                 if (documents != null && documents.isNotEmpty()) {
                     // Retrieve the carbon footprint value from the Firestore document
@@ -166,7 +168,8 @@ class Calculator1 : AppCompatActivity() {
         tipsCollection.get().addOnCompleteListener(OnCompleteListener { task: Task<*> ->
             if (task.isSuccessful) {
                 // Query was successful, get the documents
-                val documents = task.result?.documents
+                val querySnapshot = task.result as? QuerySnapshot
+                val documents = querySnapshot?.documents
 
                 if (documents != null && documents.isNotEmpty()) {
                     // Retrieve a random eco-friendly tip

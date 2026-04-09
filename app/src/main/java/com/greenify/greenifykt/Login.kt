@@ -1,6 +1,5 @@
 package com.greenify.greenifykt
 
-import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -22,6 +21,7 @@ class Login : AppCompatActivity() {
     var password: String? = null
     var textViewError: TextView? = null
     var textViewLogin: TextView? = null
+    var textViewForgotPassword: TextView? = null
     var buttonSubmitLogin: Button? = null
     var progressBar: ProgressBar? = null
     var mAuth: FirebaseAuth? = null
@@ -36,6 +36,7 @@ class Login : AppCompatActivity() {
         editTextPassword = findViewById(com.greenify.greenifykt.R.id.password)
         textViewError = findViewById(com.greenify.greenifykt.R.id.error)
         textViewLogin = findViewById(com.greenify.greenifykt.R.id.registerNow)
+        textViewForgotPassword = findViewById(com.greenify.greenifykt.R.id.forgotPassword)
         buttonSubmitLogin = findViewById(com.greenify.greenifykt.R.id.submit)
         progressBar = findViewById(com.greenify.greenifykt.R.id.loading)
 
@@ -48,6 +49,15 @@ class Login : AppCompatActivity() {
             startActivity(intent)
             finish()
         })
+        
+        textViewForgotPassword?.setOnClickListener(View.OnClickListener { view: View? ->
+            val intent = Intent(
+                applicationContext,
+                ForgotPassword::class.java
+            )
+            startActivity(intent)
+        })
+        
         buttonSubmitLogin?.setOnClickListener(View.OnClickListener setOnClickListener@{ view: View? ->
             progressBar?.setVisibility(View.VISIBLE)
             textViewError?.setVisibility(View.GONE)

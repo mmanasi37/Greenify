@@ -22,19 +22,16 @@
             android:name=".Challenge"
             android:exported="false" />
         <activity
-            android:name=".estore"
-            android:exported="false" />
-        <activity
             android:name=".EcoTips"
             android:exported="false" />
         <activity
             android:name=".Registration"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".Calculator4Transport"
+            android:name=".Login"
             android:exported="false" />
         <activity
             android:name=".Calculator3Food"

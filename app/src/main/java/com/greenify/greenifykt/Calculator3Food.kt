@@ -1,11 +1,15 @@
+package com.greenify.greenifykt
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.app.AlertDialog
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import java.util.Locale
 
 class Calculator3Food : AppCompatActivity() {
@@ -111,7 +115,8 @@ class Calculator3Food : AppCompatActivity() {
         query.get().addOnCompleteListener(OnCompleteListener { task: Task<*> ->
             if (task.isSuccessful) {
                 // Query was successful, get the documents
-                val documents = task.result?.documents
+                val querySnapshot = task.result as? QuerySnapshot
+                val documents = querySnapshot?.documents
 
                 if (documents != null && documents.isNotEmpty()) {
                     // Retrieve the carbon footprint value from the Firestore document
@@ -141,7 +146,8 @@ class Calculator3Food : AppCompatActivity() {
         tipsCollection.get().addOnCompleteListener(OnCompleteListener { task: Task<*> ->
             if (task.isSuccessful) {
                 // Query was successful, get the documents
-                val documents = task.result?.documents
+                val querySnapshot = task.result as? QuerySnapshot
+                val documents = querySnapshot?.documents
 
                 if (documents != null && documents.isNotEmpty()) {
                     // Retrieve a random eco-friendly tip
