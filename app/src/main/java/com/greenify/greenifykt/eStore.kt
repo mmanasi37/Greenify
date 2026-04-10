@@ -159,6 +159,10 @@ class eStore : ComponentActivity() {
     private val auth by lazy { FirebaseAuth.getInstance() }
     private val adminUids = setOf("2NjIR8ofydRFvqZzlYK3JYBDPkS2")
 
+    private fun profilePrefs() = getSharedPreferences("greenify_profile", MODE_PRIVATE)
+    private fun getFirstName(): String = profilePrefs().getString("first_name", "")?.trim().orEmpty()
+    private fun getFullName(): String = profilePrefs().getString("full_name", "")?.trim().orEmpty()
+
     private fun isAdminUser(): Boolean = auth.currentUser?.uid in adminUids
 
     private fun mapCatalog(snapshot: QuerySnapshot?): List<StoreProduct> {
@@ -281,12 +285,15 @@ class eStore : ComponentActivity() {
             val autoRefreshStore = remember { settingsPrefs.getBoolean("estore_auto_refresh", true) }
             val showImpactInKg = remember { settingsPrefs.getBoolean("impact_in_kg", true) }
             val app = remember { FirebaseApp.initializeApp(this) ?: FirebaseApp.getInstance() }
-            val authInfo = remember(auth.currentUser?.uid, auth.currentUser?.email) {
+            val authInfo = remember(auth.currentUser?.uid) {
+                val firstName = getFirstName()
+                val fullName = getFullName()
                 val user = auth.currentUser
-                if (user == null) {
-                    "Auth: Not signed in"
-                } else {
-                    "Auth UID: ${user.uid}"
+                when {
+                    firstName.isNotBlank() -> "Hi $firstName! Welcome to the eStore"
+                    fullName.isNotBlank() -> "Hi $fullName! Welcome to the eStore"
+                    user?.email != null -> "Hi ${user.email!!.substringBefore("@")}! Welcome to the eStore"
+                    else -> "Welcome to the eStore"
                 }
             }
             val isAdmin = remember(auth.currentUser?.uid) { isAdminUser() }

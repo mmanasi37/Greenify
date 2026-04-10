@@ -23,16 +23,16 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,6 +41,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
@@ -54,6 +56,8 @@ class MainActivity : AppCompatActivity() {
     private val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 
     private fun getDashboardPrefs() = getSharedPreferences("greenify_dashboard", MODE_PRIVATE)
+    private fun getProfilePrefs() = getSharedPreferences("greenify_profile", MODE_PRIVATE)
+    private fun getFirstName(): String = getProfilePrefs().getString("first_name", "")?.trim().orEmpty()
 
     private fun todayKey(): String = dateFormatter.format(Date())
 
@@ -111,6 +115,22 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             var darkMode by rememberSaveable { mutableStateOf(ThemeModeManager.isDarkModeEnabled(this)) }
+            var firstName by rememberSaveable { mutableStateOf(getFirstName()) }
+            val lifecycleOwner = LocalLifecycleOwner.current
+
+            DisposableEffect(lifecycleOwner) {
+                val observer = LifecycleEventObserver { _, event ->
+                    if (event == Lifecycle.Event.ON_RESUME) {
+                        darkMode = ThemeModeManager.isDarkModeEnabled(this@MainActivity)
+                        firstName = getFirstName()
+                    }
+                }
+                lifecycleOwner.lifecycle.addObserver(observer)
+                onDispose {
+                    lifecycleOwner.lifecycle.removeObserver(observer)
+                }
+            }
+
             val tipsRepository = remember { EcoTipsRepository(FirebaseFirestore.getInstance()) }
             var dashboardTip by remember {
                 mutableStateOf(
@@ -152,15 +172,11 @@ class MainActivity : AppCompatActivity() {
             GreenifyCalculatorTheme(darkTheme = darkMode) {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     DashboardScreen(
-                        darkMode = darkMode,
+                        firstName = firstName,
                         dashboardTip = dashboardTip,
                         completedToday = completedToday,
                         weeklyStreak = weeklyStreak,
                         isFavorite = isFavorite,
-                        onToggleDarkMode = {
-                            darkMode = it
-                            ThemeModeManager.setDarkMode(this, it)
-                        },
                         onRefreshTip = { refreshTip() },
                         onToggleCompletedToday = { checked ->
                             completedToday = checked
@@ -225,12 +241,11 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 private fun DashboardScreen(
-    darkMode: Boolean,
+    firstName: String,
     dashboardTip: EcoTip,
     completedToday: Boolean,
     weeklyStreak: Int,
     isFavorite: Boolean,
-    onToggleDarkMode: (Boolean) -> Unit,
     onRefreshTip: () -> Unit,
     onToggleCompletedToday: (Boolean) -> Unit,
     onToggleFavorite: (Boolean) -> Unit,
@@ -274,20 +289,21 @@ private fun DashboardScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "Welcome to Greenify",
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onPrimary
-                    )
-
-                    Row(verticalAlignment = Alignment.CenterVertically) {
+                    Column {
+                        if (firstName.isNotBlank()) {
+                            Text(
+                                text = "Hi $firstName!",
+                                fontSize = 22.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                color = MaterialTheme.colorScheme.onPrimary
+                            )
+                        }
                         Text(
-                            text = "Dark",
-                            color = MaterialTheme.colorScheme.onPrimary,
-                            style = MaterialTheme.typography.labelMedium
+                            text = "Welcome to Greenify",
+                            fontSize = 28.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onPrimary
                         )
-                        Switch(checked = darkMode, onCheckedChange = onToggleDarkMode)
                     }
                 }
 
@@ -345,13 +361,6 @@ private fun DashboardScreen(
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Logout")
-        }
-
-        TextButton(
-            onClick = { onToggleDarkMode(!darkMode) },
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        ) {
-            Text(if (darkMode) "Switch to Light Mode" else "Switch to Dark Mode")
         }
     }
 }

@@ -54,6 +54,8 @@ class Challenge : ComponentActivity() {
     private val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 
     private fun prefs() = getSharedPreferences("greenify_challenge", MODE_PRIVATE)
+    private fun profilePrefs() = getSharedPreferences("greenify_profile", MODE_PRIVATE)
+    private fun getFirstName(): String = profilePrefs().getString("first_name", "")?.trim().orEmpty()
 
     private fun currentWeekKey(): String {
         val cal = Calendar.getInstance()
@@ -123,6 +125,7 @@ class Challenge : ComponentActivity() {
 
         setContent {
             var darkMode by rememberSaveable { mutableStateOf(ThemeModeManager.isDarkModeEnabled(this)) }
+            val firstName = remember { getFirstName() }
             var points by remember { mutableStateOf(getPoints()) }
             val dailyChallenge = remember { selectDailyChallenge() }
             val weeklyChallenge = remember { selectWeeklyChallenge() }
@@ -133,6 +136,7 @@ class Challenge : ComponentActivity() {
             GreenifyCalculatorTheme(darkTheme = darkMode) {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     ChallengeScreen(
+                        firstName = firstName,
                         darkMode = darkMode,
                         points = points,
                         weeklyCo2Saved = weeklyCo2Saved,
@@ -213,6 +217,7 @@ private data class EcoChallenge(
 
 @Composable
 private fun ChallengeScreen(
+    firstName: String,
     darkMode: Boolean,
     points: Int,
     weeklyCo2Saved: Double,
@@ -244,6 +249,15 @@ private fun ChallengeScreen(
             TextButton(onClick = { onToggleDarkMode(!darkMode) }) {
                 Text(if (darkMode) "Light" else "Dark")
             }
+        }
+
+        if (firstName.isNotBlank()) {
+            Text(
+                text = "Hi $firstName!",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.primary
+            )
         }
 
         Text(
