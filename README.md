@@ -2,6 +2,10 @@
 
 Greenify is an Android app built with Kotlin to help users understand and reduce their carbon footprint through calculators, eco tips, and community-focused sustainability features.
 
+## Developer
+
+- Mekere Manasi
+
 ## Features
 
 - Authentication with Firebase (register, login, and forgot password)

@@ -1,122 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
-    android:orientation="vertical"
-    tools:context=".Calculator2Electricity">
+    android:background="#F5F6F5"
+    android:padding="16dp"
+    tools:context=".ElectricityCalculatorActivity">
 
-    <TextView
-        android:id="@+id/textViewGreenify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:text="Greenify"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText,VisualLintOverlap" />
-
-    <TextView
-        android:id="@+id/textViewMeatCalculator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Electricity Calculator"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/headerCard"
+        android:layout_width="0dp"
+        android:layout_height="164dp"
+        app:cardCornerRadius="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.085"
-        tools:ignore="HardcodedText,NotSibling" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/header_gradient"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/textViewGreenify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Greenify"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textViewMeatCalculator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Electricity Calculator"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:drawableStart="@drawable/ic_energy_18"
+                android:drawablePadding="8dp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/curved_bottom" />
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/applianceInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="#4CAF50"
+        app:hintTextColor="#8D6E63"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerCard">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextElectricalAppliance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type of electrical appliance"
+            android:inputType="text"
+            android:textColor="#2E7D32"
+            android:textColorHint="#8D6E63"
+            tools:ignore="HardcodedText" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/timeInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="#4CAF50"
+        app:hintTextColor="#8D6E63"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/applianceInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTimeSpent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time spent (hours)"
+            android:inputType="numberDecimal"
+            android:textColor="#2E7D32"
+            android:textColorHint="#8D6E63"
+            tools:ignore="HardcodedText" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/actionButtons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timeInputLayout">
+
+        <Button
+            android:id="@+id/btnElectricityCalculator"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_primary_button"
+            android:text="Calculate"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btnGenerateTips"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_primary_button"
+            android:text="Get Tips"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutCarbonDisplay"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextElectricalAppliance"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGreenify">
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <EditText
-        android:id="@+id/editTextTimeSpent"
-        android:layout_width="300dp"
-        android:layout_height="69dp"
         android:layout_marginTop="20dp"
-        android:hint="Provide the time spent using the appliance:"
-        android:minHeight="48dp"
-        android:textColorHint="#8D6E63"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.366"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.541"
-        tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
-
-    <EditText
-        android:id="@+id/editTextElectricalAppliance"
-        android:layout_width="302dp"
-        android:layout_height="63dp"
-        android:hint="Provide type of electrical appliance used:"
-        android:minHeight="48dp"
-        android:textColorHint="#8D6E63"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTimeSpent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.361"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.908"
-        tools:ignore="Autofill,DuplicateClickableBoundsCheck,HardcodedText,TextFields,VisualLintTextFieldSize,VisualLintOverlap" />
-
-    <Button
-        android:id="@+id/btnElectricityCalculator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:onClick="calculate"
-        android:text="Calculate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.319"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTimeSpent"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/btnGenerateTips"
-        android:layout_width="114dp"
-        android:layout_height="48dp"
-        android:onClick="tips"
-        android:text="Get Tips"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toEndOf="@+id/btnElectricityCalculator"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74"
-        tools:ignore="HardcodedText" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextCarbonDisplay"
-        android:layout_width="343dp"
-        android:layout_height="111dp"
-        android:background="@color/cardview_dark_background"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="#4CAF50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+        app:layout_constraintTop_toBottomOf="@id/actionButtons">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextCarbonDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#E8F5E9"
+            android:enabled="false"
+            android:hint="Carbon Emissions (kg CO2)"
+            android:textColor="#2E7D32"
+            android:textColorHint="#8D6E63"
+            tools:ignore="HardcodedText" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

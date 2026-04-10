@@ -1,149 +1,34 @@
 {
   "project_info": {
-    "project_number": "99465529104",
-    "project_id": "greenify1",
-    "storage_bucket": "greenify1.appspot.com"
+    "project_number": "1090277974527",
+    "firebase_url": "https://greenify-4c502-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "greenify-4c502",
+    "storage_bucket": "greenify-4c502.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:99465529104:android:d5777a7452f16a36660795",
-        "android_client_info": {
-          "package_name": "com.example.codeseasy.com.customerapp"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "99465529104-ifj8ur09hnm62g7sr9gkqn96p4k5leak.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDeRsx5MetJIuy8voK_JUDLpuvuIqVFi5U"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "99465529104-ifj8ur09hnm62g7sr9gkqn96p4k5leak.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:99465529104:android:d86bd44f8cc4d457660795",
-        "android_client_info": {
-          "package_name": "com.example.codeseasy.com.greenify"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "99465529104-ifj8ur09hnm62g7sr9gkqn96p4k5leak.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDeRsx5MetJIuy8voK_JUDLpuvuIqVFi5U"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "99465529104-ifj8ur09hnm62g7sr9gkqn96p4k5leak.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:99465529104:android:d270fc863fc0e07f660795",
-        "android_client_info": {
-          "package_name": "com.greenify.app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "99465529104-ifj8ur09hnm62g7sr9gkqn96p4k5leak.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDeRsx5MetJIuy8voK_JUDLpuvuIqVFi5U"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "99465529104-ifj8ur09hnm62g7sr9gkqn96p4k5leak.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:99465529104:android:ae6cafaf5a5c4832660795",
-        "android_client_info": {
-          "package_name": "com.greenify.greenify"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "99465529104-ifj8ur09hnm62g7sr9gkqn96p4k5leak.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDeRsx5MetJIuy8voK_JUDLpuvuIqVFi5U"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "99465529104-ifj8ur09hnm62g7sr9gkqn96p4k5leak.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:99465529104:android:2a95c8b4822845e8660795",
+        "mobilesdk_app_id": "1:1090277974527:android:51ea52078e117ab680c7ca",
         "android_client_info": {
           "package_name": "com.greenify.greenifykt"
         }
       },
       "oauth_client": [
         {
-          "client_id": "99465529104-ifj8ur09hnm62g7sr9gkqn96p4k5leak.apps.googleusercontent.com",
+          "client_id": "1090277974527-onh5r5l3eor4cfcp38hdu07nc2812bf4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDeRsx5MetJIuy8voK_JUDLpuvuIqVFi5U"
+          "current_key": "AIzaSyDJt6HvlPFWjc_wOYmxQBk8ne1EfOURFv0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "99465529104-ifj8ur09hnm62g7sr9gkqn96p4k5leak.apps.googleusercontent.com",
+              "client_id": "1090277974527-onh5r5l3eor4cfcp38hdu07nc2812bf4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

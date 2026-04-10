@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Greenifykt"
         tools:targetApi="31">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".eStore"
             android:exported="false" />
         <activity
@@ -34,13 +40,13 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".Calculator3Food"
+            android:name=".FoodCalculatorActivity"
             android:exported="false" />
         <activity
-            android:name=".Calculator2Electricity"
+            android:name=".TransportCalculatorActivity"
             android:exported="false" />
         <activity
-            android:name=".Calculator1"
+            android:name=".ElectricityCalculatorActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

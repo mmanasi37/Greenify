@@ -1,122 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
-    android:orientation="vertical"
-    tools:context=".Calculator3Food">
+    android:background="#F5F6F5"
+    android:padding="16dp"
+    tools:context=".FoodCalculatorActivity">
 
-    <TextView
-        android:id="@+id/textViewGreenify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Greenify"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/headerCard"
+        android:layout_width="0dp"
+        android:layout_height="164dp"
+        app:cardCornerRadius="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintVertical_bias="0.1"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textViewFoodCalculator"
-        android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/header_gradient"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/textViewGreenify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Greenify"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textViewFoodCalculator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Food Calculator"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:drawableStart="@drawable/ic_food_18"
+                android:drawablePadding="8dp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/curved_bottom" />
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/foodInputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Food Calculator"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="#4CAF50"
+        app:hintTextColor="#8D6E63"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.101"
-        tools:ignore="HardcodedText,NotSibling" />
+        app:layout_constraintTop_toBottomOf="@id/headerCard">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTypeofFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Food type"
+            android:inputType="text"
+            android:textColor="#2E7D32"
+            android:textColorHint="#8D6E63"
+            tools:ignore="HardcodedText" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/amountInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="#4CAF50"
+        app:hintTextColor="#8D6E63"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/foodInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Amount eaten (kg)"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:textColor="#2E7D32"
+            android:textColorHint="#8D6E63"
+            tools:ignore="HardcodedText" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/actionButtons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/amountInputLayout">
+
+        <Button
+            android:id="@+id/btnFoodCalculator"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_primary_button"
+            android:text="Calculate"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btnGenerateFoodTips"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_primary_button"
+            android:text="Get Tips"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutCarbonDisplay"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTypeofFood"
+        android:layout_marginTop="20dp"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="#4CAF50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGreenify">
+        app:layout_constraintTop_toBottomOf="@id/actionButtons">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/carbondisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#E8F5E9"
+            android:enabled="false"
+            android:hint="Carbon Emissions (kg CO2)"
+            android:textColor="#2E7D32"
+            android:textColorHint="#8D6E63"
+            tools:ignore="HardcodedText" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <EditText
-        android:id="@+id/editTextTypeofFood"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="216dp"
-        android:hint="What did you eat?"
-        android:minHeight="48dp"
-        android:textColorHint="#8D6E63"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCarbonDisplay"
-        tools:ignore="Autofill,HardcodedText,TextFields,VisualLintTextFieldSize" />
-
-    <Button
-        android:id="@+id/btnFoodCalculator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:onClick="calculate"
-        android:text="Calculate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAmount"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/btnGenerateFoodTips"
-        android:layout_width="114dp"
-        android:layout_height="48dp"
-        android:onClick="tips"
-        android:text="Get Tips"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.426"
-        app:layout_constraintStart_toEndOf="@+id/btnFoodCalculator"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.59"
-        tools:ignore="HardcodedText" />
-
-    <EditText
-        android:id="@+id/editTextAmount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:hint="How much did you eat?"
-        android:importantForAutofill="no"
-        android:minHeight="48dp"
-        android:textColorHint="#8D6E63"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTypeofFood"
-        tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/carbondisplay"
-        android:layout_width="317dp"
-        android:layout_height="123dp"
-        android:background="@color/cardview_dark_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
