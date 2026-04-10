@@ -1,45 +1,80 @@
 # Greenify
 
-Greenify is an Android application built using Kotlin that aims to promote eco-friendly practices and sustainability awareness.
+Greenify is an Android app built with Kotlin to help users understand and reduce their carbon footprint through calculators, eco tips, and community-focused sustainability features.
 
 ## Features
 
-- User-friendly interface for tracking environmental impact
-- Tips and suggestions for reducing carbon footprint
-- Community features to share green initiatives
+- Authentication with Firebase (register, login, and forgot password)
+- Carbon footprint calculators for food and electricity
+- Eco tips integration from Firebase Firestore
+- Sustainability challenge and community screens
+- E-store screen for eco-friendly product ideas
 
-## Installation
+## Tech Stack
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/greenifykt.git
-   ```
-
-2. Open the project in Android Studio.
-
-3. Build and run the app on an emulator or physical device.
+- Kotlin + Android SDK
+- Gradle (Kotlin DSL)
+- Firebase Authentication
+- Firebase Firestore
+- Material Components
 
 ## Requirements
 
-- Android Studio Arctic Fox or later
-- Minimum Android API level 21 (Android 5.0)
-- Kotlin 1.5.0 or later
+- Java 21 (recommended)
+- Android SDK Platform 33
+- Android Build Tools 33.x
+- Gradle Wrapper (included)
 
-## Build Instructions
+## Setup
 
-1. Ensure you have the Android SDK installed.
-2. Sync the project with Gradle files.
-3. Build the project using `./gradlew build` or through Android Studio.
+1. Clone the repository:
 
-## Usage
+```bash
+git clone https://github.com/mmanasi37/Greenify.git
+cd Greenify
+```
 
-- Launch the app on your Android device.
-- Follow the on-screen instructions to track and improve your environmental habits.
+2. Configure Android SDK path in `local.properties`:
 
-## Contributing
+```properties
+sdk.dir=/path/to/Android/Sdk
+```
 
-Contributions are welcome! Please fork the repository and submit a pull request.
+3. Ensure `app/google-services.json` is present for Firebase.
+
+4. Build the app:
+
+```bash
+./gradlew clean build
+```
+
+## Run on Device
+
+1. Enable Developer Options and USB debugging on your Android phone.
+2. Connect the phone and verify connection:
+
+```bash
+adb devices
+```
+
+3. Install debug APK:
+
+```bash
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+## Project Structure
+
+- `app/src/main/java/com/greenify/greenifykt/` - Kotlin activities
+- `app/src/main/res/layout/` - XML UI layouts
+- `app/src/main/res/drawable/` - drawables and UI assets
+- `app/src/main/AndroidManifest.xml` - app components
+
+## Notes
+
+- The project currently targets `compileSdk = 33`.
+- Firebase-backed features require internet connectivity.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
